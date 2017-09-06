@@ -10,7 +10,7 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - "./mysql/entrypoint-scripts-local/:/docker-entrypoint-initdb.d/"
+            - "./mysql/entrypoint-scripts-prod/:/docker-entrypoint-initdb.d/"
             - "./web/hairsalonnguyentung:/var/www/html/hairsalonnguyentung"
     web:
         container_name: web
@@ -20,8 +20,8 @@ services:
             - "80:80"
         volumes:
             - "./web/hairsalonnguyentung:/var/www/html/hairsalonnguyentung"
-            - "./web/config_local/wp-config.php:/var/www/html/hairsalonnguyentung/wp-config.php"
-            - "./web/config_local/hairsalonnguyentung.conf:/etc/apache2/sites-enabled/hairsalonnguyentung.conf"
+            - "./web/config_prod/wp-config.php:/var/www/html/hairsalonnguyentung/wp-config.php"
+            - "./web/config_prod/hairsalonnguyentung.conf:/etc/apache2/sites-enabled/hairsalonnguyentung.conf"
         entrypoint:
             - /docker-entrypoint.sh
         links:
