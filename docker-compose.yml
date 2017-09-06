@@ -1,0 +1,30 @@
+version: '3'
+services:
+    mysql:
+        container_name: mysql
+        build:
+            context: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=m7GjTag9xY40oVDA
+        command: mysqld --sql-mode=""
+        ports:
+            - "3306:3306"
+        volumes:
+            - "./mysql/entrypoint-scripts-local/:/docker-entrypoint-initdb.d/"
+            - "./web/hairsalonnguyentung:/var/www/html/hairsalonnguyentung"
+    web:
+        container_name: web
+        build:
+            context: web
+        ports:
+            - "80:80"
+        volumes:
+            - "./web/hairsalonnguyentung:/var/www/html/hairsalonnguyentung"
+            - "./web/config_local/wp-config.php:/var/www/html/hairsalonnguyentung/wp-config.php"
+            - "./web/config_local/hairsalonnguyentung.conf:/etc/apache2/sites-enabled/hairsalonnguyentung.conf"
+        entrypoint:
+            - /docker-entrypoint.sh
+        links:
+            - mysql:mtmg-db
+        depends_on:
+            - mysql
