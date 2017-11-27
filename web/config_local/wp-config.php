@@ -85,6 +85,10 @@ $table_prefix  = 'hsnt_';
  */
 define('WP_DEBUG', false);
 
+//Multi Domain for a site
+define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST']);
+define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST']);
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */
